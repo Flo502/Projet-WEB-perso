@@ -2,6 +2,13 @@
 
 Proposition de sujet : site de festival fictif
 
+## Pour le faire fonctionner :
+
+* Aller dans le dossier décompressé, ouvrir un terminal et taper ``` sudo npm install ```
+* Puis initialiser un serveur mongoDb en tapant ``` sudo mongod ```
+* Ouvrir un nouveau terminal, se placer dans le dossier du projet, puis lancer le serveur avec ``` node app.js ```
+* Et voilà ! Vous n'avez plus qu'à vous rendre [ici](http://localhost:3000/users/login) 
+
 ## Présentation de l’idée :
 
 Nous souhaiterions réaliser le site d’un festival musical fictif de genres variés. Ce serait donc un site promotionnel, sur lequel on pourrait acheter des billets, obtenir des informations sur les concerts et leur fréquentation, les artistes, le lieu et le logement, etc.
