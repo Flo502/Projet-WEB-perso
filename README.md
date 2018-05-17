@@ -24,9 +24,8 @@ De même, pour le back-end, nous utiliserons NodeJS ou le module flask de python
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Loginapp](https://github.com/bradtraversy/loginapp)
+* [Un tuto](https://github.com/mjhea0/passport-local-express4) - pour une authentification avec passport, express, et mongodb
 
 
 ## Authors
