@@ -1,0 +1,41 @@
+{
+  "name": "projet-web-perso",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Website with simple authentication system",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "start-test": "node app.js",
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Flo502/Projet-WEB-perso.git"
+  },
+  "author": "Flo, Iane, JB",
+  "license": "",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "chai": "~1.8.1",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "debug": "^2.1.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mocha": "^5.1.1",
+    "mongodb": "*",
+    "mongoose": "*",
+    "morgan": "^1.5.1",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "passport-local-mongoose": "*",
+    "serve-favicon": "^2.2.0",
+    "should": "~2.1.0"
+  }
+}
