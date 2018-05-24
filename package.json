@@ -6,8 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
-    "start-test": "node app.js",
-    "test": "make test"
+    "start-test": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,16 +16,20 @@
   "license": "",
   "dependencies": {
     "bcryptjs": "*",
+    "bcrypt-nodejs": "*",
     "body-parser": "*",
     "chai": "~1.8.1",
     "connect-flash": "*",
+    "connect-mongo": "*",
     "cookie-parser": "^1.4.1",
+    "csurf": "*",
     "debug": "^2.1.1",
     "express": "*",
     "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "hbs": "*",
     "mocha": "^5.1.1",
     "mongodb": "*",
     "mongoose": "*",
@@ -36,6 +39,7 @@
     "passport-local": "*",
     "passport-local-mongoose": "*",
     "serve-favicon": "^2.2.0",
-    "should": "~2.1.0"
+    "should": "~2.1.0",
+    "stripe": "*"
   }
 }

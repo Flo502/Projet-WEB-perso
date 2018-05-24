@@ -12,16 +12,19 @@ var express = require('express'),
   LocalStrategy = require('passport-local').Strategy,
   flash = require('connect-flash'),
   mongo = require('mongodb'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  MongoStore = require('connect-mongo')(session);
+
 
 // mongoose
-mongoose.connect('mongodb://localhost/loginapp', {
+mongoose.connect('mongodb://localhost/RandomFest', {
   useMongoClient: true,
 });
+//require('./config/passport');
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var userRoutes = require('./routes/users');
 
 // Init App
 var app = express();
@@ -30,17 +33,20 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
   defaultLayout: 'layout',
+  extname: '.handlebars'
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', '.handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // BodyParser Middleware
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+//app.use(validator());
 app.use(cookieParser());
 
 // Set Static Folder
@@ -49,8 +55,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Express Session
 app.use(session({
   secret: 'secret',
+  resave: true,
   saveUninitialized: true,
-  resave: true
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  }),
+  cookie: {
+    maxAge: 180 * 60 * 1000
+  }
 }));
 
 // Passport init
@@ -85,27 +97,30 @@ app.use(function(req, res, next) {
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
   res.locals.user = req.user || null;
+  // new :
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
   next();
 });
+
+app.use('/', routes);
+app.use('/users', userRoutes);
 /*
+// Set Port
+app.set('port', (process.env.PORT || 3000));
+
+app.listen(app.get('port'), function() {
+  console.log('Server started on port ' + app.get('port'));
+});*/
+//console.log('Server started on port ' + 5000);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-*/
-app.use('/', routes);
-app.use('/users', users);
 
-// Set Port
-app.set('port', (process.env.PORT || 3000));
-
-app.listen(app.get('port'), function() {
-  console.log('Server started on port ' + app.get('port'));
-});
-
-/*
 // error handlers
 
 // development error handler
@@ -129,6 +144,6 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-*/
+
 
 module.exports = app;
