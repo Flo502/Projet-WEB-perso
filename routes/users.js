@@ -24,12 +24,12 @@ router.post('/register', function(req, res) {
   var password2 = req.body.password2;
 
   // Validation
-  req.checkBody('name', 'Name is required').notEmpty();
-  req.checkBody('email', 'Email is required').notEmpty();
-  req.checkBody('email', 'Email is not valid').isEmail();
-  req.checkBody('username', 'Username is required').notEmpty();
-  req.checkBody('password', 'Password is required').notEmpty();
-  req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+  req.checkBody('name', 'Nom requis').notEmpty();
+  req.checkBody('email', 'Email requis').notEmpty();
+  req.checkBody('email', 'Email invalide').isEmail();
+  req.checkBody('username', "Nom d'utilisateur requis").notEmpty();
+  req.checkBody('password', 'Mot de passe requis').notEmpty();
+  req.checkBody('password2', 'La confirmation du mot de passe ne correspond pas').equals(req.body.password);
 
   var errors = req.validationErrors();
 
@@ -67,7 +67,7 @@ router.post('/register', function(req, res) {
             if (err) throw err;
             console.log(user);
           });
-          req.flash('success_msg', 'You are registered and can now login');
+          req.flash('success_msg', 'Vous êtes enregistrés, vous pouvez désormais vous connecter');
           res.redirect('/users/login');
         }
       });
@@ -82,7 +82,7 @@ passport.use(new LocalStrategy(
       if (err) throw err;
       if (!user) {
         return done(null, false, {
-          message: 'Unknown User'
+          message: 'Utilisateur inconnu'
         });
       }
 
@@ -92,7 +92,7 @@ passport.use(new LocalStrategy(
           return done(null, user);
         } else {
           return done(null, false, {
-            message: 'Invalid password'
+            message: 'Mot de passe incorrect'
           });
         }
       });

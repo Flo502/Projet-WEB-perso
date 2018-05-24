@@ -1,9 +1,9 @@
-<h2 class="page-header">Register</h2>
+<h2 class="page-header">Inscription</h2>
 {{#if user}}
-        <div class="alert alert-danger">Username has taken already try new</div>
+        <div class="alert alert-danger">Nom d'utilisateur déjà utilisé</div>
 {{/if}}
 {{#if mail}}
-        <div class="alert alert-danger">Email has taken already try new</div>
+        <div class="alert alert-danger">Adresse email déjà utilisée</div>
 {{/if}}
 {{#if errors}}
       {{#each errors}}
@@ -12,12 +12,12 @@
 {{/if}}
 <form method="post" action="/users/register">
    <div class="form-group">
-    <label>Name</label>
-    <input type="text" class="form-control" placeholder="Name" name="name">
+    <label>Nom</label>
+    <input type="text" class="form-control" placeholder="Nom" name="name">
   </div>
   <div class="form-group">
-    <label>Username</label>
-    <input type="text" class="form-control" placeholder="Username" name="username">
+    <label>Nom d'utilisateur</label>
+    <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username">
   </div>
    <div class="form-group">
     <label>Email</label>

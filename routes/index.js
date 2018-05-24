@@ -3,8 +3,8 @@ var passport = require('passport');
 var router = express.Router();
 
 // Get Homepage
-router.get('/', ensureAuthenticated, function(req, res) {
-  res.render('index');
+router.get('/', function(req, res) {
+  res.render('accueil');
 });
 
 function ensureAuthenticated(req, res, next) {
@@ -15,6 +15,15 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/users/login');
   }
 }
+
+router.get('/', function(req, res) {
+    res.render('index');
+});
+
+router.get('/lineup', function(req, res) {
+    res.render('line_up');
+});
+
 
 router.get('/register', (req, res) => {
   res.render('register', {});
