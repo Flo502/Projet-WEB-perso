@@ -33,7 +33,7 @@ De même, pour le back-end, nous utiliserons NodeJS ou le module flask de python
 
 * [Loginapp](https://github.com/bradtraversy/loginapp)
 * [Un tuto](https://github.com/mjhea0/passport-local-express4) - pour une authentification avec passport, express, et mongodb
-
+* [Tuto](https://github.com/mschwarzmueller/nodejs-shopping-cart-tutorial/tree/07-finishing-touches) - pour stripe/express/handlebars/mongoDB
 
 ## Authors
 
