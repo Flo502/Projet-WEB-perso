@@ -1,4 +1,4 @@
-# Projet WEB 
+# Projet WEB
 
 Proposition de sujet : site de festival fictif
 
@@ -6,8 +6,8 @@ Proposition de sujet : site de festival fictif
 
 * Aller dans le dossier décompressé, ouvrir un terminal et taper ``` sudo npm install ```
 * Puis initialiser un serveur mongoDB en tapant ``` sudo mongod ```
-* Ouvrir un nouveau terminal, se placer dans le dossier du projet, puis lancer le serveur avec ``` node app.js ```
-* Et voilà ! Vous n'avez plus qu'à vous rendre [ici](http://localhost:3000/users/login) 
+* Ouvrir un nouveau terminal, se placer dans le dossier du projet, puis lancer le serveur avec ``` npm start ```
+* Et voilà ! Vous n'avez plus qu'à vous rendre [ici](http://localhost:5000/users/login)
 
 ## Présentation de l’idée :
 
@@ -25,8 +25,8 @@ Nous souhaitons implémenter certaines fonctionnalités qui nécessitent l’uti
 
 * Recherche des artistes ou des concerts suivant des filtres comme le style, nom, fréquentation etc.
 
-Le tout requerra la création et le traitement de bases de données, que nous réaliserons à l’aide des outils vus en cours tels que noSQL, mongodb etc, sachant que nous n’aurons pas besoin de traiter une quantité massive de données. 
-    
+Le tout requerra la création et le traitement de bases de données, que nous réaliserons à l’aide des outils vus en cours tels que noSQL, mongodb etc, sachant que nous n’aurons pas besoin de traiter une quantité massive de données.
+
 De même, pour le back-end, nous utiliserons NodeJS ou le module flask de python. Quant au front-end, nous utiliserons le langage HTML/CSS.
 
 ## Built With
@@ -42,5 +42,3 @@ De même, pour le back-end, nous utiliserons NodeJS ou le module flask de python
 * [Iane V.](https://github.com/Jeeb183)
 
 See also the list of [contributors](https://github.com/Projet-WEB/contributors) who participated in this project.
-
-
