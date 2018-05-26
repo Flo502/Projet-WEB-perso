@@ -259,6 +259,10 @@ h1, h2, h3, h4, h5, h6, figure {
   right: 20px;
 }
 
+.top_marge{
+ margin-top: 100px;
+}
+
 #fh5co-image-grid {
   margin-top: 15px;
   padding-bottom: 15px;
@@ -272,6 +276,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 #fh5co-image-grid .grid {
   position: relative;
+  margin-top: 50px;
 }
 #fh5co-image-grid .item {
   position: relative;

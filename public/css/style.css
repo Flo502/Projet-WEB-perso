@@ -32,9 +32,9 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 768px) {
+@media (min-width: 100px) {
   .container {
-    max-width: 730px;
+    max-width: 4000px;
   }
 }
 .container-narrow > hr {
@@ -65,8 +65,8 @@ body {
   .header,
   .marketing,
   .footer {
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 100px;
+    padding-left: 100px;
   }
   /* Space out the masthead */
   .header {
@@ -77,6 +77,12 @@ body {
     border-bottom: 0;
   }
 }
+
+.images_petit {
+ width:80px;
+ height:80px;
+ padding-left 100px;
+} 
 
 .page-header{
   margin-top:0;
