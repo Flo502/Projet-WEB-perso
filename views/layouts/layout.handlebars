@@ -29,12 +29,18 @@
 								</div>
 								<div class="collapse navbar-collapse navbar-right">
 										<ul class="nav navbar-nav">
-												<li class="active"><a href="/">Home</a></li>
-												<li><a href="#feature">Feature</a></li>
-												<li><a href="#gallery">Gallery</a></li>
-												<li><a href="#pricing">Price & Plan</a></li>
-												<li><a href="#our-team">Our Team</a></li>
-												<li><a href="#contact">Contact</a></li>
+												<li class="active"><a href="/">Accueil</a></li>
+												<li><a href="#pricing">Prix et plan</a></li>
+												<li><a href="/lineup">Line-up</a></li>
+												<li><a href="#gallery">Programme</a></li>
+							          {{#if user}}
+							            <li> <a href="/">Mon compte</a></li>
+							            <li> <a href="/users/logout">Se déconnecter</a></li>
+							          {{else}}
+							            <li> <a href="/users/login">Se connecter</a></li>
+							            <li> <a href="/users/register">S'enregistrer</a></li>
+							          {{/if}}
+							          </ul>
 										</ul>
 								</div>
 						</div><!--/.container-->
@@ -61,9 +67,13 @@
 
       </div>
 
-      <footer class="footer">
-        <p>&copy; 2018 Random Fest, Inc.</p>
-      </footer>
+			<div id="footer">
+			  <div class="container text-center">
+			    <div class="fnav">
+			      <p>Copyright &copy; 2018 RandomFest. Designed by Jean-Baptiste Lanneluc</p>
+			    </div>
+			  </div>
+			</div>
 
 </body>
 </html>
