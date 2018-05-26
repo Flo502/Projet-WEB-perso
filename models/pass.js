@@ -6,23 +6,32 @@ var schema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  pass: { //des pass 1 jour, 2j ou 3j
-    type: Object,
-    required: true
-  },
-  //nom prénom date de naissance, adresse, paymentId, 
+  pass: [{
+	  ticket: {
+			type: Schema.Types.ObjectId,
+			ref: 'Ticket'
+		}
+	}],
   address: {
     type: String,
     required: true
   },
-  name: {
+  firstname: {
     type: String,
     required: true
   },
+  lastname: {
+    type: String,
+    required: true
+  },
+  birthdate: {
+		type: Date,
+		required: true
+	},
   paymentId: {
     type: String,
     required: true
   }
 });
 
-module.exports = mongoose.model('Ticket', schema);
+module.exports = mongoose.model('Pass', schema);

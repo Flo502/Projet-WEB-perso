@@ -11,9 +11,13 @@
       {{/each}}
 {{/if}}
 <form method="post" action="/users/register">
-   <div class="form-group">
+  <div class="form-group">
     <label>Nom</label>
-    <input type="text" class="form-control" placeholder="Nom" name="name">
+    <input type="text" class="form-control" placeholder="Nom" name="lastname">
+  </div>
+  <div class="form-group">
+    <label>Prénom</label>
+    <input type="text" class="form-control" placeholder="Prénom" name="firstname">
   </div>
   <div class="form-group">
     <label>Nom d'utilisateur</label>
@@ -24,12 +28,12 @@
     <input type="email" class="form-control" placeholder="Email" name="email">
   </div>
   <div class="form-group">
-    <label>Password</label>
-    <input type="password" class="form-control" placeholder="Password" name="password">
+    <label>Mot de passe</label>
+    <input type="password" class="form-control" placeholder="Mot de passe" name="password">
   </div>
   <div class="form-group">
-    <label>Confirm Password</label>
-    <input type="password" class="form-control" placeholder="Password" name="password2">
+    <label>Confirmez le mot de passe</label>
+    <input type="password" class="form-control" placeholder="Confirmez le mot de passe" name="password2">
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default">S'inscrire</button>
 </form>
