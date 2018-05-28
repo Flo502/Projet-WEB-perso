@@ -60,7 +60,7 @@ router.post('/register', function(req, res) {
           });
         } else {
           var newUser = new User({
-			lastname: lastname,
+						lastname: lastname,
             firstname: firstname,
             email: email,
             username: username,

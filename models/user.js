@@ -23,6 +23,7 @@ var UserSchema = mongoose.Schema({
   lastname: {
     type: String
   }
+  // ref vers pass?
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

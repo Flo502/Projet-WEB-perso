@@ -13,4 +13,28 @@ var schema = new Schema({
 	
 });
 
-module.exports = mongoose.model('Ticket', schema);
+var Ticket = module.exports = mongoose.model('Ticket', schema);
+
+
+// retourne le nombre de place libres à [jour]
+module.exports.isAvailable = function(jour, callback) {
+	Ticket.count({ date: jour, pass: '' }, callback);
+}
+
+// attribue un pass à un ticket et retourne le ticket
+module.exports.givePass = function(jour, pass) {
+	Ticket.findOneAndUpdate(
+		{$and: [{ dsate: jour }, {pass: ''}]},
+		{ pass: pass }, 
+		{ new : true },
+		function (err, ticket) {
+			if (err) return handleErr(err);
+			return ticket;
+		}
+	);
+}
+
+		
+		
+	
+	

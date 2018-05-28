@@ -6,6 +6,7 @@ Proposition de sujet : site de festival fictif
 
 * Aller dans le dossier décompressé, ouvrir un terminal et taper ``` sudo npm install ```
 * Puis initialiser un serveur mongoDB en tapant ``` sudo mongod ```
+* Initialiser la DB en tapant ```node ./initDB```
 * Ouvrir un nouveau terminal, se placer dans le dossier du projet, puis lancer le serveur avec ``` npm start ```
 * Et voilà ! Vous n'avez plus qu'à vous rendre [ici](http://localhost:5000/users/login)
 

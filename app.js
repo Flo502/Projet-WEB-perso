@@ -17,14 +17,13 @@ var express = require('express'),
 
 
 // mongoose
-mongoose.connect('mongodb://localhost/RandomFest', {
-  useMongoClient: true,
-});
-//require('./config/passport');
+mongoose.connect('mongodb://localhost/RandomFest');
 var db = mongoose.connection;
+
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/users');
+var billeterieRoutes = require('./routes/billeterie');
 
 // Init App
 var app = express();
@@ -105,6 +104,8 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/users', userRoutes);
+app.use('/', billeterieRoutes);
+
 /*
 // Set Port
 app.set('port', (process.env.PORT || 3000));
@@ -122,7 +123,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
+/*
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -143,7 +144,7 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-});
+});*/
 
 
 module.exports = app;

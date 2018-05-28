@@ -34,4 +34,8 @@ var schema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Pass', schema);
+var Pass = module.exports = mongoose.model('Pass', schema);
+
+module.exports.createPass = function (newPass, callback) {
+	newPass.save(callback);
+}
