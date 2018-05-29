@@ -128,6 +128,7 @@ router.post('/login',
     }
   });
 
+
 router.get('/logout', isLoggedIn, function(req, res, next) {
   req.logout();
   req.flash('success_msg', 'Vous êtes déconnectés');

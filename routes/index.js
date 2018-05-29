@@ -15,6 +15,11 @@ router.get('/lineup', function(req, res) {
   res.render('line_up');
 });
 
+router.get('/compte', isLoggedIn, function(req, res) {
+  var User = req.user
+  res.render('account', {name: User.lastname, firstname: User.firstname, email: User.email, username: User.username});
+});
+
 router.get('/programmation', function(req, res) {
   res.render('programmation');
 });
