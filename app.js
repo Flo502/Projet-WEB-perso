@@ -145,6 +145,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });*/
-
-
+console.log('app.js initialisée');
 module.exports = app;

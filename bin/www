@@ -3,6 +3,50 @@
 var app = require('../app');
 var debug = require('debug')('RandomFest:server');
 var http = require('http');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/RandomFest');
+var db = mongoose.connection;
+db.once('open', Main);
+
+var Ticket = require('../models/ticket');
+var Product = require('../models/product');
+
+var myProducts = require('../product');
+
+async function Main() {
+  Ticket.remove({}, function(err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    for (var i = 0; i < 10; i++) {
+      new Ticket({
+        date: '08.01.18'
+      }).save(function(err) {
+        if (err) console.log(err);
+      });
+      new Ticket({
+        date: '08.02.18'
+      }).save(function(err) {
+        if (err) console.log(err);
+      });
+      new Ticket({
+        date: '08.03.18'
+      }).save(function(err) {
+        if (err) console.log(err);
+      });
+    }
+
+  });
+
+  await Product.remove({}).exec();
+  Product.insertMany(myProducts, function(err, docs) {
+    if (err) console.log(err);
+    else console.log('Base de donnée MAJ')
+  });
+}
 
 // Get port from environment and store in Express.
 var port = normalizePort(process.env.PORT || '5000');
@@ -15,7 +59,7 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
+console.log('Serveur lancé');
 // Normalize a port into a number, string, or false.
 function normalizePort(val) {
   var port = parseInt(val, 10);
