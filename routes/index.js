@@ -8,15 +8,15 @@ router.get('/', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-    res.render('index');
+  res.render('index');
 });
 
 router.get('/lineup', function(req, res) {
-    res.render('line_up');
+  res.render('line_up');
 });
 
 router.get('/programmation', function(req, res) {
-    res.render('programmation');
+  res.render('programmation');
 });
 
 
@@ -57,13 +57,60 @@ router.get('/ping', (req, res) => {
   res.status(200).send("pong!");
 });
 
+router.get('/checkout', isLoggedIn, function(req, res, next) {
+  if (!req.session.cart) {
+    return res.redirect('/shopping-cart');
+  }
+  var cart = new Cart(req.session.cart);
+  var errMsg = req.flash('error')[0];
+  res.render('shop/checkout', {
+    total: cart.totalPrice,
+    errMsg: errMsg,
+    noError: !errMsg
+  });
+});
+
+router.post('/checkout', isLoggedIn, function(req, res, next) {
+  if (!req.session.cart) {
+    return res.redirect('/shopping-cart');
+  }
+  var cart = new Cart(req.session.cart);
+
+  var stripe = require("stripe")(
+    "pk_test_bpviEB3yiRjrKRvwt9cm5riu"
+  );
+
+  stripe.charges.create({
+    amount: cart.totalPrice * 100,
+    currency: "usd",
+    source: req.body.stripeToken, // obtained with Stripe.js
+    description: "Test Charge"
+  }, function(err, charge) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('/checkout');
+    }
+    var order = new Order({
+      user: req.user,
+      cart: cart,
+      address: req.body.address,
+      name: req.body.name,
+      paymentId: charge.id
+    });
+    order.save(function(err, result) {
+      req.flash('success', 'Successfully bought product!');
+      req.session.cart = null;
+      res.redirect('/');
+    });
+  });
+});
+
 module.exports = router;
 
-module.exports.ensureAuthenticated = function (req, res, next) {
+function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
-  } else {
-    //req.flash('error_msg','You are not logged in');
-    res.redirect('/users/login');
   }
+  req.session.oldUrl = req.url;
+  res.redirect('/user/login');
 }

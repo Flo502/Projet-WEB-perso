@@ -3,19 +3,25 @@ const router = express.Router();
 
 var Pass = require('../models/pass');
 var Ticket = require('../models/ticket');
-var Index = require('./index');
 var Product = require('../models/product');
 
-router.get('/billetterie', Index.ensureAuthenticated, function(req, res) {
-	Product.listAllProducts().then(function(docs, err) {
-		res.json(docs);
-	});
+router.get('/billetterie', isLoggedIn, function(req, res) {
+  Product.listAllProducts().then(function(docs, err) {
+    res.json(docs);
+  });
 });
 
-router.get('/billetterie/:idProduct', Index.ensureAuthenticated, function(req, res) {
-	Product.listAllProducts().then(function(docs, err) {
-		res.json(docs);
-	});
+router.get('/billetterie/:idProduct', isLoggedIn, function(req, res) {
+  Product.listAllProducts().then(function(docs, err) {
+    res.json(docs);
+  });
 });
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/user/login');
+}
 
 module.exports = router;

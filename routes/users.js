@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var Index = require('./index');
 var User = require('../models/user');
 
 // Register
@@ -128,12 +128,14 @@ router.post('/login',
     }
   });
 
-router.get('/logout', function(req, res) {
+router.get('/logout', isLoggedIn, function(req, res, next) {
   req.logout();
-
   req.flash('success_msg', 'Vous êtes déconnectés');
+  res.redirect('/');
+});
 
-  res.redirect('/#header');
+router.use('/', notLoggedIn, function(req, res, next) {
+  next();
 });
 
 module.exports = router;
