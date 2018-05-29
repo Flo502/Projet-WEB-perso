@@ -15,6 +15,10 @@ router.get('/lineup', function(req, res) {
     res.render('line_up');
 });
 
+router.get('/programmation', function(req, res) {
+    res.render('programmation');
+});
+
 
 router.get('/register', (req, res) => {
   res.render('register', {});

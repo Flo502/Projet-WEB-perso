@@ -127,7 +127,7 @@ router.get('/logout', function(req, res) {
 
   req.flash('success_msg', 'Vous êtes déconnectés');
 
-  res.redirect('/users/login');
+  res.redirect('/#header');
 });
 
 module.exports = router;
