@@ -17,7 +17,7 @@ router.get('/login', function(req, res) {
 
 // Register User
 router.post('/register', function(req, res) {
-	var firstname = req.body.firstname;
+  var firstname = req.body.firstname;
   var lastname = req.body.lastname;
   var email = req.body.email;
   var username = req.body.username;
@@ -60,7 +60,7 @@ router.post('/register', function(req, res) {
           });
         } else {
           var newUser = new User({
-						lastname: lastname,
+            lastname: lastname,
             firstname: firstname,
             email: email,
             username: username,
@@ -118,8 +118,14 @@ router.post('/login',
     failureRedirect: '/users/login',
     failureFlash: true
   }),
-  function(req, res) {
-    res.redirect('/');
+  function(req, res, next) {
+    if (req.session.oldUrl) {
+      var oldUrl = req.session.oldUrl;
+      req.session.oldUrl = null;
+      res.redirect(oldUrl);
+    } else {
+      res.redirect('/user/profile');
+    }
   });
 
 router.get('/logout', function(req, res) {
@@ -131,3 +137,17 @@ router.get('/logout', function(req, res) {
 });
 
 module.exports = router;
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+}
+
+function notLoggedIn(req, res, next) {
+  if (!req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/');
+}
