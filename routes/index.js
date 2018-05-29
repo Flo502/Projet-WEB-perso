@@ -47,30 +47,18 @@ router.get('/programmation', function(req, res) {
   res.render('programmation');
 });
 
-
+/*
 router.get('/register', (req, res) => {
   res.render('register', {});
-});
-
+});*/
+/*
 router.get('/login', (req, res) => {
   res.render('login', {
     user: req.user,
     error: req.flash('error')
   });
 });
-
-router.post('/login', passport.authenticate('local', {
-  failureRedirect: '/login',
-  failureFlash: true
-}), (req, res, next) => {
-  req.session.save((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/');
-  });
-});
-
+*/
 router.get('/logout', (req, res, next) => {
   req.logout();
   req.session.save((err) => {
@@ -140,5 +128,5 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   req.session.oldUrl = req.url;
-  res.redirect('/user/login');
+  res.redirect('/users/login');
 }

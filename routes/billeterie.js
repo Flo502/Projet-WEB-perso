@@ -21,7 +21,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/user/login');
+  res.redirect('/users/login');
 }
 
 module.exports = router;
