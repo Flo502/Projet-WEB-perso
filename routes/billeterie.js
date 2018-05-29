@@ -10,7 +10,7 @@ router.get('/billetterie', isLoggedIn, function(req, res) {
   //TODO: vérifier qu'il reste assez de ticket et update la collection
   //Product.listAllProducts().then(function(docs, err) {
     res.render('Billetterie');
-  });
+  //});
 });
 
 router.get('/Pass1', isLoggedIn, function(req, res) {
