@@ -1,29 +1,50 @@
 [
 	{
 		"title": "Pass J1",
-    "description": "Ceci est un pass",
+    "description": "Ceci est le pass pour le J1",
     "price": 10,
     "date": ["08.01.18"],
     "isAvailable": true
   },
 	{
 		"title": "Pass J2",
-    "description": "Ceci est un pass",
+    "description": "Ceci est le pass pour le J0",
 		"price": 10,
 		"date": ["08.02.18"],
 		"isAvailable": true
 	},
 	{
 		"title": "Pass J3",
-    "description": "Ceci est un pass",
+    "description": "Ceci est le pass pour le J3",
 		"price": 10,
 		"date": ["08.03.18"],
 		"isAvailable": true
 	},
 	{
+		"title": "Pass 2 jours",
+		"description": "Ceci est le pass pour les J1 et J2",
+		"price": 20,
+		"date": ["08.01.18", "08.02.18"],
+		"isAvailable": true
+	},
+	{
+		"title": "Pass 2 jours",
+		"description": "Ceci est le pass pour les J2 et J3",
+		"price": 20,
+		"date": ["08.02.18", "08.03.18"],
+		"isAvailable": true
+	},
+	{
+		"title": "Pass 2 jours",
+		"description": "Ceci est le pass pour les J1 et J3",
+		"price": 20,
+		"date": ["08.01.18", "08.03.18"],
+		"isAvailable": true
+	},
+	{
 		"title": "Pass 3 jours",
-    "description": "Ceci est un pass",
-		"price": 10,
+    "description": "Ceci est le pass pour 3 jours",
+		"price": 30,
 		"date": ["08.01.18", "08.02.18", "08.03.18"],
 		"isAvailable": true
 	}
