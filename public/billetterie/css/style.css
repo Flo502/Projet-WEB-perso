@@ -116,12 +116,12 @@ hr {
 }
 
 .navbar-header a.navbar-brand {
-   color:#111;
+   color:#fff;
    font-family:'Roboto';
 }
 
 .navbar-header a.navbar-brand:hover{
-   color:#fff;
+   color:#00C0FF;
 }
 
 .navbar {
@@ -145,7 +145,7 @@ hr {
 	padding: 5px 12px;
 	margin: 0;
 	border-radius: 3px;
-	color: #111;
+	color: #fff; /* couleur texte */
 	line-height: 24px;
 	display: inline-block;
 	text-transform:;
@@ -155,13 +155,13 @@ hr {
 }
 
 .navbar-fixed-top .navbar-nav > li > a:hover{
-	background: #0BA9F9;	
+	background: #0080A0;	
 	color:#fff;
 }
 
 .navbar-fixed-top {
   border: none;
-  background: #0BA9F9;
+  background: #003060; /* C'est ici que l'on modifie la couleur de la barre de menus*/
 }
 
 .navbar-fixed-top .navbar-brand {
@@ -176,7 +176,7 @@ hr {
 .navbar-fixed-top .navbar-nav > .open > a,
 .navbar-fixed-top .navbar-nav > .open > a:hover,
 .navbar-fixed-top .navbar-nav > .open > a:focus {
-  background-color: #111;
+  background-color: #000050; /* couleur autour du bouton Accuei */
   color: #fff;
 }
 
@@ -820,4 +820,19 @@ ul.social-network li a {
 }
 .social-network li:hover .fa-pinterest-square {
   color: #EA4B49; 
+}
+
+/* Footer Section*/
+#footer {
+	background: #03252b;
+	padding: 25px 0 20px 0;
+}
+#footer p {
+	font-size: 13px;
+}
+#footer a {
+	color: #aaa;
+}
+#footer a:hover {
+	color: #25BAD0;
 }
