@@ -30,4 +30,3 @@ async function Main() {
 	await Product.remove({}).exec();
 	Product.insertMany(myProducts, function(err, docs) { if (err) console.log(err); else console.log('ok')});
 }
-

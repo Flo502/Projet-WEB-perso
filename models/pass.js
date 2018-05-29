@@ -29,8 +29,7 @@ var schema = new Schema({
 		required: true
 	},
   paymentId: {
-    type: String,
-    required: true
+    type: String
   }
 });
 
@@ -39,3 +38,4 @@ var Pass = module.exports = mongoose.model('Pass', schema);
 module.exports.createPass = function (newPass, callback) {
 	newPass.save(callback);
 }
+

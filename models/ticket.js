@@ -17,21 +17,18 @@ var Ticket = module.exports = mongoose.model('Ticket', schema);
 
 
 // retourne le nombre de place libres à [jour]
-module.exports.isAvailable = function(jour, callback) {
-	Ticket.count({ date: jour, pass: '' }, callback);
+module.exports.isAvailable = function(jour) {
+	return Ticket.count({ date: jour, pass: '' }).exec();
 }
 
 // attribue un pass à un ticket et retourne le ticket
 module.exports.givePass = function(jour, pass) {
-	Ticket.findOneAndUpdate(
-		{$and: [{ dsate: jour }, {pass: ''}]},
+	console.log('je suis dans givePass');
+	return Ticket.findOneAndUpdate(
+		{$and: [{ date: jour }, {pass: null}]},
 		{ pass: pass }, 
-		{ new : true },
-		function (err, ticket) {
-			if (err) return handleErr(err);
-			return ticket;
-		}
-	);
+		{ new : true }
+	).exec();
 }
 
 		

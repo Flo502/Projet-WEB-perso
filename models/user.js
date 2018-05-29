@@ -22,8 +22,13 @@ var UserSchema = mongoose.Schema({
   },
   lastname: {
     type: String
-  }
-  // ref vers pass?
+  },
+  passes: [{
+	  pass: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Pass'
+		}
+	}],
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);
@@ -42,6 +47,13 @@ module.exports.getUserByUsername = function(username, callback) {
     username: username
   };
   User.findOne(query, callback);
+}
+
+module.exports.updatePass = function(username, pass) {
+	var query = {
+		username: username
+	};
+	return User.findOneAndUpdate(query, {$push: {passes: pass}}).exec();
 }
 
 module.exports.getUserById = function(id, callback) {
