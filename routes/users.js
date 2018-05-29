@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var Index = require('./index');
 var User = require('../models/user');
 
 // Register
@@ -12,7 +11,28 @@ router.get('/register', function(req, res) {
 
 // Login
 router.get('/login', function(req, res) {
-  res.render('login');
+  res.render('login', {
+    user: req.user,
+    error: req.flash('error')
+  });
+});
+
+router.get('/profile', isLoggedIn, function(req, res, next) {
+  User.find({
+    user: req.user
+  }, function(err, orders) {
+    if (err) {
+      return res.write('Error!');
+    }
+    var cart;
+    orders.forEach(function(order) {
+      cart = new Cart(order.cart);
+      order.items = cart.generateArray();
+    });
+    res.render('user/profile', {
+      orders: orders
+    });
+  });
 });
 
 // Register User
@@ -132,11 +152,64 @@ router.post('/login',
 router.get('/logout', isLoggedIn, function(req, res, next) {
   req.logout();
   req.flash('success_msg', 'Vous êtes déconnectés');
-  res.redirect('/');
+  req.session.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
 });
 
 router.use('/', notLoggedIn, function(req, res, next) {
   next();
+});
+
+router.get('/checkout', isLoggedIn, function(req, res, next) {
+  if (!req.session.cart) {
+    return res.redirect('/shopping-cart');
+  }
+  var cart = new Cart(req.session.cart);
+  var errMsg = req.flash('error')[0];
+  res.render('shop/checkout', {
+    total: cart.totalPrice,
+    errMsg: errMsg,
+    noError: !errMsg
+  });
+});
+
+router.post('/checkout', isLoggedIn, function(req, res, next) {
+  if (!req.session.cart) {
+    return res.redirect('/shopping-cart');
+  }
+  var cart = new Cart(req.session.cart);
+
+  var stripe = require("stripe")(
+    "pk_test_bpviEB3yiRjrKRvwt9cm5riu"
+  );
+
+  stripe.charges.create({
+    amount: cart.totalPrice * 100,
+    currency: "usd",
+    source: req.body.stripeToken, // obtained with Stripe.js
+    description: "Test Charge"
+  }, function(err, charge) {
+    if (err) {
+      req.flash('error', err.message);
+      return res.redirect('/checkout');
+    }
+    var order = new Order({
+      user: req.user,
+      cart: cart,
+      address: req.body.address,
+      name: req.body.name,
+      paymentId: charge.id
+    });
+    order.save(function(err, result) {
+      req.flash('success', 'Successfully bought product!');
+      req.session.cart = null;
+      res.redirect('/');
+    });
+  });
 });
 
 module.exports = router;
@@ -145,7 +218,8 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/');
+  req.session.oldUrl = req.url;
+  res.redirect('/users/login');
 }
 
 function notLoggedIn(req, res, next) {

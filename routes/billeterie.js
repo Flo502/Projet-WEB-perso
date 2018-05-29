@@ -15,7 +15,7 @@ router.get('/billetterie', isLoggedIn, function(req, res) {
 
 
 router.get('/billetterie/:idProduct', isLoggedIn, function(req, res) {
-  res.render('billeterie', {idProduct: req.params.idProduct});
+  res.render('achat', {idProduct: req.params.idProduct});
 });
 	
 router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
@@ -33,7 +33,7 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
   var errors = req.validationErrors();
   
   if (errors) {
-    res.render('billeterie', {
+    res.render('achat', {
       errors: errors
     });
   } else {
@@ -46,7 +46,7 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		});
 		
 		var user = req.user;
-				
+		
 		var newPass = new Pass ({
 			firstname: firstname,
 			lastname: lastname,
@@ -56,11 +56,14 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 			pass: []
 		});
 		
+		console.log(date.dates);
+		console.log('length', date.dates.length);
+		
 		//récupérer tickets: NE MARCHE PAS
-		for (var i = 0; i< date.length; i++) {
+		for (var i = 0; i< date.dates.length; i++) {
 			console.log('iter');
-			console.log('date', i, date[i]); 
-			await Ticket.givePass(date[i], newPass).then(function(doc, err){
+			console.log('date', i, date.dates[i]); 
+			await Ticket.givePass(dateArr[i], newPass).then(function(doc, err){
 				newPass.pass.push(doc);
 				console.log('ticket');
 				console.log(doc);
@@ -71,14 +74,14 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		}
 		
 		console.log('Pass: ',newPass);
-		/*
+		
 		await User.updatePass(user.username, newPass).then(function(doc, err) {
 			if (err) console.log(err);
 		});
 		
 		console.log(req.user);
 		
-		req.flash('success_msg', 'Le billet a été acheté');*/
+		req.flash('success_msg', 'Le billet a été acheté');
 		res.redirect('/billetterie');
 	}
   
@@ -90,7 +93,7 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/user/login');
+  res.redirect('/users/login');
 }
 
 module.exports = router;
