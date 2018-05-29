@@ -1,0 +1,67 @@
+<h2 class="page-header">Dashboard</h2>
+<p> </p>
+<p> </p>
+<p>EVALUATION
+L’évaluation s’effectuera pour les étudiants de la filière classique, avec :
+<ul>
+<li>Une présentation d’une durée de 10mn avec 5 transparents maxi présentant l’architecture du système d’information,</li>
+<li>Une démo de 10mn des différentes fonctionnalités,</li>
+<li>Une documentation technique de 5 pages Web incluse dans le système d’information,</li>
+<li>Un rapport de 2 pages sur la conduite de projet.</li>
+</ul>
+</p>
+
+<p>Les compétences associées à chaque fonctionnalités seront évaluées comme suit :
+<ul>
+<li>Formalisation des structures de données – 2 points</li>
+<li>Mise en place d’un back­‐end adapté au stockage des données – 3 points</li>
+<li>Utilisation d’un langage de manipulation des données – 3 points</li>
+<li>Langage de programmation pour la génération de documents –Back‐end – 4 points</li>
+<li>Interfaçage standard Front­‐end/Back‐end – 4 points</li>
+<li>Langage de programmation pour l’adaptation de documents – Front­‐end – 2 points</li>
+<li>Aisance à l’oral, organisation, pédagogie – 2 points</li>
+</ul>
+</p>
+
+<p>Pour faire une doc technique, il faut savoir si :
+1 - c'est juste un mode d'emploi du site (à l'usage de ceux qui auront à le mettre à jour, faire les sauvegardes, etc.)
+Pour le plan, ça devrait découler de soi mais voici un exemple :
+<ul>
+<li>intro décrivant le fonctionnement général (CMS utilisé le cas échéant, NDD et hébergement, etc.)</li>
+<li>mettre à jour le site (telle partie du site, telle autre partie, etc.)</li>
+<li>Points particuliers</li>
+<li>Sauvegarder le site (FTP, base de donnée)</li>
+<li>Notes techniques diverses</li>
+</ul>
+
+Il ne faut pas hésiter à mettre des capture d'écran dans la doc.
+</p>
+
+<p>2 - ou si c'est une documentation plus technique sur la conception du site à l'usage d'autres développeurs ultérieurs
+Mais tu peux déjà donner :
+<ul>
+<li>la structure de la base de donnée</li>
+<li>l'arborescence des fichiers (et une description du rôle de chacun :
+  profites-en pour le mettre en commentaire au début de chaque fichier si ça n'est pas déjà fait).</li>
+<li>la structuration globale du site autour des fichiers et de la base de donnée</li>
+<li>Aspectes techniques particuliers (scritps JS utilisés, etc.)</li>
+</ul>
+</p>
+
+<p>Il est difficile pour un informaticien de se plonger dans le projet d'un autre.
+Aussi la documentation passe par une bonne organisation de ton code, et les commentaires des parties les plus difficiles à comprendre.
+Concernant le document en lui même il est important de pouvoir décomposer ce que fais chaque fichier: ainsi un schéma de navigation est le bienvenu.
+Ce schéma consiste a lister les différents fichiers, comment ils communiquent entre eux, et les fonctions qu'ils réalisent.
+Voici un exemple très simple:
+bonjour.php  -------------> aurevoir.php
+action: dire bonjour         Action: dire aurevoir
+Ici on dit qu'on accède à aurevoir.php depuis bonjour.php. Il peut évidemment y avoir plusieurs actions.
+</p>
+
+<p>Ensuite il faut expliquer comment tu as fait pour l'installer (s'il y a des particularités),
+les logiciels utilisés, la mise en page du code utilisé. L'organisation interne de tes fichiers.
+Il est facile pour un informaticien de comprendre des diagrammes, utilise donc un diagramme de cas d'utilisation !
+Parle également de l'organisation de la BDD, donc ici tu mets une image de ton MCD ou de ton diagramme de classe et du MLD.
+Comment tu l'as construite. S'il y a une interface d'administration, screen la et détaille la,
+explique les fonctionnalités qu'elle fait, etc.
+</p>
