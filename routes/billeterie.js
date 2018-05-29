@@ -8,30 +8,41 @@ var User = require('../models/user');
 
 router.get('/billetterie', isLoggedIn, function(req, res) {
   //TODO: vérifier qu'il reste assez de ticket et update la collection
-  Product.listAllProducts().then(function(docs, err) {
-    res.json(docs);
+  //Product.listAllProducts().then(function(docs, err) {
+    res.render('Billetterie');
   });
 });
 
+router.get('/Pass1', isLoggedIn, function(req, res) {
+  //Product.find().then(function(docs, err) {
+    res.render('Pass1');
+//  });
+});
+
+router.get('/Pass2', isLoggedIn, function(req, res) {
+  //Product.listAllProducts().then(function(docs, err) {
+    res.render('Pass2');
+  //});
+});
 
 router.get('/billetterie/:idProduct', isLoggedIn, function(req, res) {
   res.render('achat', {idProduct: req.params.idProduct});
 });
-	
+
 router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
-	
+
 	var firstname = req.body.firstname;
   var lastname = req.body.lastname;
   var address = req.body.address;
   var birthdate = req.body.birthdate;
-  
+
   req.checkBody('firstname', 'Prénom requis').notEmpty();
   req.checkBody('lastname', 'Nom requis').notEmpty();
   req.checkBody('address', 'Adresse requise').notEmpty();
   req.checkBody('birthdate', 'Date de naissance requise').notEmpty();
-  
+
   var errors = req.validationErrors();
-  
+
   if (errors) {
     res.render('achat', {
       errors: errors
@@ -44,9 +55,9 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		}).catch(function(err) {
 			console.log(err);
 		});
-		
+
 		var user = req.user;
-		
+
 		var newPass = await (new Pass ({
 			firstname: firstname,
 			lastname: lastname,
@@ -57,14 +68,14 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		})).save().then(function(doc,err) {
 			return doc;
 		});
-		
+
 		console.log(date.dates);
 		console.log('length', date.dates.length);
-		
+
 		//récupérer tickets: NE MARCHE PAS
 		for (var i = 0; i< date.dates.length; i++) {
 			console.log('iter');
-			console.log('date', i, date.dates[i]); 
+			console.log('date', i, date.dates[i]);
 			await Ticket.givePass(date.dates[i], newPass._id).then(function(doc, err){
 				Pass.addTicket(newPass._id, doc._id);
 				console.log('ticket');
@@ -74,16 +85,16 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 				console.log(err);
 			});
 		}
-		
+
 		User.updatePass(user.username, newPass._id);
-		
+
 		console.log(req.user);
 		console.log(req.user.passes);
-		
+
 		req.flash('success_msg', 'Le billet a été acheté');
 		res.redirect('/');
 	}
-  
+
 });
 
 

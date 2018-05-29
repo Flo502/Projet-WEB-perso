@@ -33,6 +33,10 @@ router.get('/lineup', function(req, res) {
   res.render('line_up');
 });
 
+router.get('/Howto', function(req, res) {
+  res.render('howto');
+});
+
 router.get('/compte', isLoggedIn, function(req, res) {
   var User = req.user
   res.render('account', {
