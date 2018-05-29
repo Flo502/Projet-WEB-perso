@@ -123,7 +123,7 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-/*
+
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -144,6 +144,6 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
-});*/
+});
 console.log('app.js initialisée');
 module.exports = app;
