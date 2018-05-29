@@ -53,7 +53,11 @@ module.exports.updatePass = function(username, pass) {
 	var query = {
 		username: username
 	};
-	return User.findOneAndUpdate(query, {$push: {passes: pass}}).exec();
+	User.findOne(query, 'passes').exec(function (err, doc) {
+		doc.passes.push(pass);
+		console.log('pass: ', doc);
+		
+	});;
 }
 
 module.exports.getUserById = function(id, callback) {

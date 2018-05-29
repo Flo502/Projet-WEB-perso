@@ -47,13 +47,15 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		
 		var user = req.user;
 		
-		var newPass = new Pass ({
+		var newPass = await (new Pass ({
 			firstname: firstname,
 			lastname: lastname,
 			address: address,
 			birthdate: birthdate,
 			user: user,
 			pass: []
+		})).save().then(function(doc,err) {
+			return doc;
 		});
 		
 		console.log(date.dates);
@@ -63,8 +65,8 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		for (var i = 0; i< date.dates.length; i++) {
 			console.log('iter');
 			console.log('date', i, date.dates[i]); 
-			await Ticket.givePass(dateArr[i], newPass).then(function(doc, err){
-				newPass.pass.push(doc);
+			await Ticket.givePass(date.dates[i], newPass._id).then(function(doc, err){
+				Pass.addTicket(newPass._id, doc._id);
 				console.log('ticket');
 				console.log(doc);
 				console.log(err);
@@ -73,16 +75,13 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 			});
 		}
 		
-		console.log('Pass: ',newPass);
-		
-		await User.updatePass(user.username, newPass).then(function(doc, err) {
-			if (err) console.log(err);
-		});
+		User.updatePass(user.username, newPass._id);
 		
 		console.log(req.user);
+		console.log(req.user.passes);
 		
 		req.flash('success_msg', 'Le billet a été acheté');
-		res.redirect('/billetterie');
+		res.redirect('/');
 	}
   
 });

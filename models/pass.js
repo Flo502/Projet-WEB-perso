@@ -39,3 +39,12 @@ module.exports.createPass = function (newPass, callback) {
 	newPass.save(callback);
 }
 
+module.exports.addTicket = function (passId, ticketId) {
+	console.log('passId: ', passId);
+	Pass.findById(passId, 'pass').exec(function (err, doc) {
+		doc.pass.push(ticketId);
+		console.log('pass: ', doc);
+		
+	});
+}
+
