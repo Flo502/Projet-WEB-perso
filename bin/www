@@ -45,6 +45,18 @@ async function Main() {
   Product.insertMany(myProducts, function(err, docs) {
     if (err) console.log(err);
     else console.log('Base de donnée MAJ')
+    Product.findOneAndUpdate({ title: "Pass J1J2" }, 
+    {$push: {dates: {$each: ['2018-07-31T22:00:00.000Z', '2018-08-01T22:00:00.000Z']}}}).exec().then(function (doc, err) {
+		console.log(err);
+	});
+	Product.findOneAndUpdate({ title: "Pass J2J3" }, 
+    {$push: {dates: {$each: ['2018-08-01T22:00:00.000Z', '2018-08-02T22:00:00.000Z']}}}).exec().then(function (doc, err) {
+		console.log(err);
+	});
+	Product.findOneAndUpdate({ title: "Pass J1J3" }, 
+    {$push: {dates: {$each: ['2018-07-31T22:00:00.000Z', '2018-08-02T22:00:00.000Z']}}}).exec().then(function (doc, err) {
+		console.log(err);
+	});
   });
 }
 

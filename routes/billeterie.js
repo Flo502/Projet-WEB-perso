@@ -13,6 +13,12 @@ router.get('/billetterie', isLoggedIn, async function(req, res) {
   });
 });
 
+router.get('/billetest', async function(req, res) {
+	Product.listAllProducts().then( function(docs, err) {
+		res.json(docs);
+	});	
+});
+
 router.get('/Pass1', isLoggedIn, async function(req, res) {
   var id1 = await Product.getId('Pass J1').then(function(docs, err) {
     if (err) console.log(err);
@@ -33,7 +39,7 @@ router.get('/Pass1', isLoggedIn, async function(req, res) {
 });
 
 router.get('/Pass2', isLoggedIn, async function(req, res) {
-	//TODO: in pass.handlebars, add pass J1J3
+	//TODO: in pass2.handlebars, add pass J1J3
   var id1 = await Product.getId('Pass J1J2').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j1j2', docs);
@@ -99,7 +105,7 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		console.log(date.dates);
 		console.log('length', date.dates.length);
 
-		//récupérer tickets: NE MARCHE PAS
+		
 		for (var i = 0; i< date.dates.length; i++) {
 			console.log('iter');
 			console.log('date', i, date.dates[i]);

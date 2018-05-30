@@ -24,7 +24,7 @@
 		"title": "Pass J1J2",
 		"description": "Ceci est le pass pour les J1 et J2",
 		"price": 20,
-		"date": ["08.01.18", "08.02.18"],
+		"date": ["2018-07-31T22:00:00.000Z", "2018-08-01T22:00:00.000Z"],
 		"isAvailable": true
 	},
 	{
