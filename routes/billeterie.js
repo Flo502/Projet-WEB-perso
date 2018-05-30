@@ -218,7 +218,6 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 
   req.flash('success_msg', 'Le billet a été acheté');
   res.redirect('/');
-}
 
 });
 
