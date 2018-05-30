@@ -6,11 +6,11 @@ var Ticket = require('../models/ticket');
 var Product = require('../models/product');
 var User = require('../models/user');
 
-router.get('/billetterie', isLoggedIn, function(req, res) {
+router.get('/billetterie', isLoggedIn, async function(req, res) {
   //TODO: vérifier qu'il reste assez de ticket et update la collection
-  //Product.listAllProducts().then(function(docs, err) {
-    res.render('Billetterie');
-  //});
+  await Product.getId('Pass 3 jours').then(function(docs, err) {
+    res.render('Billetterie', {id: docs._id});
+  });
 });
 
 router.get('/Pass1', isLoggedIn, async function(req, res) {
@@ -32,10 +32,24 @@ router.get('/Pass1', isLoggedIn, async function(req, res) {
   res.render('Pass1', {id1 : id1._id, id2 : id2._id, id3 : id3._id});
 });
 
-router.get('/Pass2', isLoggedIn, function(req, res) {
-  //Product.getId('Pass J2').then(function(docs, err) {
-    res.render('Pass2');
-  //});
+router.get('/Pass2', isLoggedIn, async function(req, res) {
+	//TODO: in pass.handlebars, add pass J1J3
+  var id1 = await Product.getId('Pass J1J2').then(function(docs, err) {
+    if (err) console.log(err);
+    console.log('j1j2', docs);
+    return docs;
+  });
+  var id2 = await Product.getId('Pass J2J3').then(function(docs, err) {
+    if (err) console.log(err);
+    console.log('j2j3', docs);
+    return docs;
+  });
+  var id3 = await Product.getId('Pass J1J3').then(function(docs, err) {
+    if (err) console.log(err);
+    console.log('j1j3', docs);
+    return docs;
+  });
+  res.render('Pass2', {id1 : id1._id, id2 : id2._id, id3 : id3._id});
 });
 
 router.get('/billetterie/:idProduct', isLoggedIn, function(req, res) {

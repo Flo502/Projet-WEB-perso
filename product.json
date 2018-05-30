@@ -21,21 +21,21 @@
 		"isAvailable": true
 	},
 	{
-		"title": "Pass 2 jours",
+		"title": "Pass J1J2",
 		"description": "Ceci est le pass pour les J1 et J2",
 		"price": 20,
 		"date": ["08.01.18", "08.02.18"],
 		"isAvailable": true
 	},
 	{
-		"title": "Pass 2 jours",
+		"title": "Pass J2J3",
 		"description": "Ceci est le pass pour les J2 et J3",
 		"price": 20,
 		"date": ["08.02.18", "08.03.18"],
 		"isAvailable": true
 	},
 	{
-		"title": "Pass 2 jours",
+		"title": "Pass J1J3",
 		"description": "Ceci est le pass pour les J1 et J3",
 		"price": 20,
 		"date": ["08.01.18", "08.03.18"],
