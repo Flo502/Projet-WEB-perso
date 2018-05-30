@@ -48,13 +48,13 @@ router.get('/billetterie', isLoggedIn, async function(req, res) {
 			return doc;
 		});
 	}
-  res.render('Billetterie', {id: P3J._id, count1: count1, count2, count3});
+  res.render('Billetterie', {id: P3J._id, count1, count2, count3});
 });
 
 router.get('/billetest', async function(req, res) {
 	Product.listAllProducts().then( function(docs, err) {
 		res.json(docs);
-	});	
+	});
 });
 
 router.get('/Pass1', isLoggedIn, async function(req, res) {
@@ -78,17 +78,17 @@ router.get('/Pass1', isLoggedIn, async function(req, res) {
 
 router.get('/Pass2', isLoggedIn, async function(req, res) {
 	//TODO: in pass2.handlebars, add pass J1J3
-  var id1 = await Product.getId('Pass J1J2').then(function(docs, err) {
+  var id1 = await Product.getProd('Pass J1J2').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j1j2', docs);
     return docs;
   });
-  var id2 = await Product.getId('Pass J2J3').then(function(docs, err) {
+  var id2 = await Product.getProd('Pass J2J3').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j2j3', docs);
     return docs;
   });
-  var id3 = await Product.getId('Pass J1J3').then(function(docs, err) {
+  var id3 = await Product.getProd('Pass J1J3').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j1j3', docs);
     return docs;
@@ -144,7 +144,7 @@ router.post('/billetterie/:idProduct', isLoggedIn, async function(req, res) {
 		console.log(date.dates);
 		console.log('length', date.dates.length);
 
-		
+
 		for (var i = 0; i< date.dates.length; i++) {
 			console.log('iter');
 			console.log('date', i, date.dates[i]);

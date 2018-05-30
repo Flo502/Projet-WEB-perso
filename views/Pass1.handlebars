@@ -22,6 +22,7 @@
                 <div class="row">
                     <div class="col-sm-4 plan price-one wow fadeInDown" data-wow-offset="0" data-wow-delay="0.2s">
                         <ul>
+                          {{#if j1}}
                             <li class="heading-one">
                                 <h2>Mercredi 1er août</h2>
                                 <span>15 €</span>
@@ -29,30 +30,50 @@
                             <li class="plan-action">
                                 <a href="/billetterie/{{id1}}" class="btn btn-primary">Acheter</a>
                             </li>
+                         {{else}}
+                         <li class="heading-one">
+                             <h2>Mercredi 1er août</h2>
+                             <span>EPUISE</span>
+                         </li>
+                         {{/if}}
                         </ul>
                     </div>
 
                     <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
                         <ul>
+                          {{#if j2}}
                             <li class="heading-two">
-                              <h2>Jeudi 2 août</h2>
-                              <span>15 €</span>
+                                <h2>Jeudi 2 août</h2>
+                                <span>15 €</span>
                             </li>
                             <li class="plan-action">
                                 <a href="/billetterie/{{id2}}" class="btn btn-primary">Acheter</a>
                             </li>
+                         {{else}}
+                         <li class="heading-two">
+                             <h2>Jeudi 2 août</h2>
+                             <span>EPUISE</span>
+                         </li>
+                         {{/if}}
                         </ul>
                     </div>
 
                     <div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
                         <ul>
+                          {{#if j3}}
                             <li class="heading-three">
                               <h2>Vendredi 3 août</h2>
                               <span>15 €</span>
                             </li>
-                            <lde la journéei class="plan-action">
+                            <li class="plan-action">
                                 <a href="/billetterie/{{id3}}" class="btn btn-primary">Acheter</a>
                             </li>
+                          {{else}}
+                          <li class="heading-three">
+                              <h2>Vendredi 3 août</h2>
+                              <span>EPUISE</span>
+                          </li>
+                          {{/if}}
                         </ul>
                     </div>
 

@@ -21,6 +21,7 @@
 
 			<div class="pricing-area text-center">
                 <div class="row">
+
                     <div class="col-sm-4 plan price-one wow fadeInDown" data-wow-offset="0" data-wow-delay="0.2s">
                         <ul>
                             <li class="heading-one">
@@ -35,7 +36,8 @@
                             </li>
                         </ul>
                     </div>
-
+                    {{#if count1}}
+                    {{#if count2}}
                     <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
                         <ul>
                             <li class="heading-two">
@@ -51,6 +53,67 @@
                             </li>
                         </ul>
                     </div>
+                    {{else}}
+                    {{#if count3}}
+                    <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
+                        <ul>
+                            <li class="heading-two">
+                                <h2>Pass 2 nuits</h2>
+                                <span>27 €</span>
+                            </li>
+                            <li>Accès à tous les concerts pour une nuit</li>
+                            <li>Accès aux aménagements (douches, supérette)</li>
+                            <li>Possibilité de louer une tente</li>
+                            <li>Accès aux activités, jeux et spectacles de la journée</li>
+                            <li class="plan-action">
+                                <a href="/Pass2" class="btn btn-primary">Acheter</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    {{else}}
+                    {{#if count2}}
+                    {{#if count3}}
+                    <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
+                        <ul>
+                            <li class="heading-two">
+                                <h2>Pass 2 nuits</h2>
+                                <span>27 €</span>
+                            </li>
+                            <li>Accès à tous les concerts pour une nuit</li>
+                            <li>Accès aux aménagements (douches, supérette)</li>
+                            <li>Possibilité de louer une tente</li>
+                            <li>Accès aux activités, jeux et spectacles de la journée</li>
+                            <li class="plan-action">
+                                <a href="/Pass2" class="btn btn-primary">Acheter</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {{else}}
+                    <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
+                        <ul>
+                            <li class="heading-two">
+                                <h2>Pass 2 nuits</h2>
+                                <span>EPUISE</span>
+                            </li>
+                        </ul>
+                    </div>
+                    {{/if}}
+                    {{else}}
+                    <div class="col-sm-4 plan price-two wow fadeInDown" data-wow-offset="0" data-wow-delay="0.6s">
+                        <ul>
+                            <li class="heading-two">
+                                <h2>Pass 2 nuits</h2>
+                                <span>EPUISE</span>
+                            </li>
+                        </ul>
+                    </div>
+                    {{/if}}
+                    {{/if}}
+                    {{#if count1}}
+                      {{#if count2}}
+                        {{#if count3}}
 
                     <div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
                         <img src="img/ri.png">
@@ -69,7 +132,42 @@
                             </li>
                         </ul>
                     </div>
+                    {{else}}
+                    <div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
+                        <img src="img/ri.png">
+                        <ul>
+                            <li class="heading-three">
+                                <h2>Pass Complet Premium</h2>
+                                <span>EPUISE</span>
 
+                        </ul>
+                    </div>
+
+
+
+                    {{/if}}
+                    {{else}}
+                    <div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
+                        <img src="img/ri.png">
+                        <ul>
+                            <li class="heading-three">
+                                <h2>Pass Complet Premium</h2>
+                                <span>EPUISE</span>
+
+                        </ul>
+                    </div>
+                    {{/if}}
+                    {{else}}
+                    <div class="col-sm-4 plan price-three wow fadeInDown" data-wow-offset="0" data-wow-delay="0.9s">
+                        <img src="img/ri.png">
+                        <ul>
+                            <li class="heading-three">
+                                <h2>Pass Complet Premium</h2>
+                                <span>EPUISE</span>
+
+                        </ul>
+                    </div>
+                    {{/if}}
 
                 </div>
             </div><!--/pricing-area-->
