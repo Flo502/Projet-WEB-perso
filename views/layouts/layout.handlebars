@@ -34,6 +34,12 @@
 												<li><a href="/billetterie" class="page-scroll" >Billetterie</a></li>
 												<li><a href="/lineup">Line-up</a></li>
 							          {{#if user}}
+												<li>
+				                    <a href="/shopping-cart/">
+				                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Panier
+				                        <span class="badge">{{session.cart.totalQty}}</span>
+				                    </a>
+				                </li>
 							            <li> <a href="/compte">Mon compte</a></li>
 							            <li> <a href="/users/logout">Se déconnecter</a></li>
 							          {{else}}
