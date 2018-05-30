@@ -7,11 +7,11 @@ var schema = new Schema({
     ref: 'User'
   },
   pass: [{
-	  ticket: {
-			type: Schema.Types.ObjectId,
-			ref: 'Ticket'
-		}
-	}],
+    ticket: {
+      type: Schema.Types.ObjectId,
+      ref: 'Ticket'
+    }
+  }],
   address: {
     type: String,
     required: true
@@ -25,9 +25,9 @@ var schema = new Schema({
     required: true
   },
   birthdate: {
-		type: Date,
-		required: true
-	},
+    type: Date,
+    required: true
+  },
   paymentId: {
     type: String
   }
@@ -35,15 +35,14 @@ var schema = new Schema({
 
 var Pass = module.exports = mongoose.model('Pass', schema);
 
-module.exports.createPass = function (newPass, callback) {
-	newPass.save(callback);
+module.exports.createPass = function(newPass, callback) {
+  newPass.save(callback);
 }
 
-module.exports.addTicket = function (passId, ticketId) {
-	console.log('passId: ', passId);
-	Pass.findById(passId, 'pass').exec(function (err, doc) {
-		doc.pass.push(ticketId);
-		console.log('pass: ', doc);
-	});
+module.exports.addTicket = function(passId, ticketId) {
+  console.log('passId: ', passId);
+  Pass.findById(passId, 'pass').exec(function(err, doc) {
+    doc.pass.push(ticketId);
+    console.log('pass: ', doc);
+  });
 }
-
