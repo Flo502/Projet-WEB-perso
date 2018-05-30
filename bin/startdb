@@ -41,6 +41,18 @@ async function Main() {
     }
 
   });
+  Pass.remove({}, function(err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+  });
+  User.remove({}, function(err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+  });
   await Product.remove({}).exec();
   Product.insertMany(myProducts, function(err, docs) {
     if (err) console.log(err);

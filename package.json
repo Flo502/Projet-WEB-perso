@@ -5,7 +5,8 @@
   "description": "Website with simple authentication system",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "node ./bin/startdb"
   },
   "repository": {
     "type": "git",
