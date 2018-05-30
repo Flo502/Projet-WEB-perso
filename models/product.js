@@ -19,6 +19,6 @@ module.exports.getDate = function(id) {
 	return Product.findById(id).select('dates').exec();
 }
 
-module.exports.getId = function(prodTitle) {
+module.exports.getProd = function(prodTitle) {
 	return Product.findOne({title: prodTitle}).exec();
 }

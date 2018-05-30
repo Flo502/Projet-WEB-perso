@@ -8,9 +8,47 @@ var User = require('../models/user');
 
 router.get('/billetterie', isLoggedIn, async function(req, res) {
   //TODO: vérifier qu'il reste assez de ticket et update la collection
-  await Product.getId('Pass 3 jours').then(function(docs, err) {
-    res.render('Billetterie', {id: docs._id});
+  var P3J = await Product.getProd('Pass 3 jours').then(function(docs, err) {
+    if (err) console.log(err);
+    return docs;
   });
+  var count1 = await Ticket.isAvailable('2018-07-31T22:00:00.000Z').then( function(doc, err) {
+		if (err) console.log(err);
+		console.log(doc);
+		return doc;
+	});
+	var count2 = await Ticket.isAvailable('2018-08-01T22:00:00.000Z').then( function(doc, err) {
+		if (err) console.log(err);
+		console.log(doc);
+		return doc;
+	});
+	var count3 = await Ticket.isAvailable('2018-08-02T22:00:00.000Z').then( function(doc, err) {
+		if (err) console.log(err);
+		console.log(doc);
+		return doc;
+	});
+	if (count1 == 0) {
+		Product.updateMany({dates: {$elemMatch:{$eq:'2018-07-31T22:00:00.000Z'}}}, {$set: {isAvailable : false}}).exec().then( function(doc, err) {
+			if (err) console.log(err);
+			console.log(count1, doc);
+			return doc;
+		});
+	}
+	if (count2 == 0) {
+		Product.updateMany({dates: {$elemMatch:{$eq:'2018-08-01T22:00:00.000Z'}}}, {$set: {isAvailable : false}}).exec().then( function(doc, err) {
+			if (err) console.log(err);
+			console.log(count2, doc);
+			return doc;
+		});
+	}
+	if (count3 == 0) {
+		Product.updateMany({dates: {$elemMatch:{$eq:'2018-08-02T22:00:00.000Z'}}}, {$set: {isAvailable : false}}).exec().then( function(doc, err) {
+			if (err) console.log(err);
+			console.log(count3, doc);
+			return doc;
+		});
+	}
+  res.render('Billetterie', {id: P3J._id, count1: count1, count2, count3});
 });
 
 router.get('/billetest', async function(req, res) {
@@ -20,22 +58,22 @@ router.get('/billetest', async function(req, res) {
 });
 
 router.get('/Pass1', isLoggedIn, async function(req, res) {
-  var id1 = await Product.getId('Pass J1').then(function(docs, err) {
+  var id1 = await Product.getProd('Pass J1').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j1', docs);
     return docs;
   });
-  var id2 = await Product.getId('Pass J2').then(function(docs, err) {
+  var id2 = await Product.getProd('Pass J2').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j2', docs);
     return docs;
   });
-  var id3 = await Product.getId('Pass J3').then(function(docs, err) {
+  var id3 = await Product.getProd('Pass J3').then(function(docs, err) {
     if (err) console.log(err);
     console.log('j3', docs);
     return docs;
   });
-  res.render('Pass1', {id1 : id1._id, id2 : id2._id, id3 : id3._id});
+  res.render('Pass1', {id1 : id1._id, id2 : id2._id, id3 : id3._id, j1: id1.isAvailable, j2: id2.isAvailable, j3: id3.isAvailable});
 });
 
 router.get('/Pass2', isLoggedIn, async function(req, res) {
@@ -55,10 +93,11 @@ router.get('/Pass2', isLoggedIn, async function(req, res) {
     console.log('j1j3', docs);
     return docs;
   });
-  res.render('Pass2', {id1 : id1._id, id2 : id2._id, id3 : id3._id});
+  res.render('Pass2', {id1 : id1._id, id2 : id2._id, id3 : id3._id, p1 : id1.isAvailable, p2 : id2.isAvailable, p3 : id3.isAvailable});
 });
 
 router.get('/billetterie/:idProduct', isLoggedIn, function(req, res) {
+	//TODO cas le payement marche pas: ajouter champs creditcard et autres bails
   res.render('achat', {idProduct: req.params.idProduct});
 });
 

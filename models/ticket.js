@@ -18,7 +18,7 @@ var Ticket = module.exports = mongoose.model('Ticket', schema);
 
 // retourne le nombre de place libres à [jour]
 module.exports.isAvailable = function(jour) {
-	return Ticket.count({ date: jour, pass: '' }).exec();
+	return Ticket.count({ date: jour, pass: null }).exec();
 }
 
 // attribue un pass à un ticket et retourne le ticket
