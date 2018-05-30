@@ -3,6 +3,7 @@ const router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
+var Cart = require('../models/cart');
 
 // Register
 router.get('/register', function(req, res) {

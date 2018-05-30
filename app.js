@@ -14,7 +14,8 @@ var express = require('express'),
   mongo = require('mongodb'),
   mongoose = require('mongoose'),
   MongoStore = require('connect-mongo')(session);
-
+// sk : sk_test_DkuKcEWqtOzmnm7oawN2uJDI
+// pk : pk_test_bpviEB3yiRjrKRvwt9cm5riu
 
 // mongoose
 mongoose.connect('mongodb://localhost/RandomFest');
