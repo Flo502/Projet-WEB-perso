@@ -15,7 +15,7 @@ router.get('/lineup', function(req, res) {
   res.render('line_up');
 });
 
-router.get('/Howto', function(req, res) {
+router.get('/About/Howto', function(req, res) {
   res.render('howto');
 });
 
