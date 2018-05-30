@@ -57,6 +57,10 @@ async function Main() {
     {$push: {dates: {$each: ['2018-07-31T22:00:00.000Z', '2018-08-02T22:00:00.000Z']}}}).exec().then(function (doc, err) {
 		console.log(err);
 	});
+	Product.findOneAndUpdate({ title: "Pass 3 jours" }, 
+    {$push: {dates: {$each: ['2018-07-31T22:00:00.000Z', '2018-08-01T22:00:00.000Z', '2018-08-02T22:00:00.000Z']}}}).exec().then(function (doc, err) {
+		console.log(err);
+	});
   });
 }
 
