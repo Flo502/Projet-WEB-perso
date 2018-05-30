@@ -16,6 +16,7 @@ body {
   color:#333;
   line-height:1.6em;
   overflow-x:hidden;
+  position: relative;
 }
 
 h1,
@@ -694,6 +695,8 @@ figure.effect-chico:hover img {
 footer {
 	background:#f4f4f4;
 	padding-bottom:20px;
+	position: absolute; 
+	bottom: 0;
 }
 
 #contact {
