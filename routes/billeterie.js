@@ -13,14 +13,27 @@ router.get('/billetterie', isLoggedIn, function(req, res) {
   //});
 });
 
-router.get('/Pass1', isLoggedIn, function(req, res) {
-  //Product.find().then(function(docs, err) {
-    res.render('Pass1');
-//  });
+router.get('/Pass1', isLoggedIn, async function(req, res) {
+  var id1 = await Product.getId('Pass J1').then(function(docs, err) {
+    if (err) console.log(err);
+    console.log('j1', docs);
+    return docs;
+  });
+  var id2 = await Product.getId('Pass J2').then(function(docs, err) {
+    if (err) console.log(err);
+    console.log('j2', docs);
+    return docs;
+  });
+  var id3 = await Product.getId('Pass J3').then(function(docs, err) {
+    if (err) console.log(err);
+    console.log('j3', docs);
+    return docs;
+  });
+  res.render('Pass1', {id1 : id1._id, id2 : id2._id, id3 : id3._id});
 });
 
 router.get('/Pass2', isLoggedIn, function(req, res) {
-  //Product.listAllProducts().then(function(docs, err) {
+  //Product.getId('Pass J2').then(function(docs, err) {
     res.render('Pass2');
   //});
 });

@@ -44,7 +44,6 @@ module.exports.addTicket = function (passId, ticketId) {
 	Pass.findById(passId, 'pass').exec(function (err, doc) {
 		doc.pass.push(ticketId);
 		console.log('pass: ', doc);
-		
 	});
 }
 
